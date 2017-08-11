@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Superhero Phone Book</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-  <script src="app.js"></script>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Superhero Phone Book</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="superPhoneApp" ng-controller="SuperPhoneController as vm">
+    <h1>Search SuperHero Phonebook</h1>
+    <input type="text" ng-model="query">
+      <div ng-repeat="sup in vm.superheroes | filter: query" ng-class="{ 'blueTeam' : sup.affiliation === 'Blue', 'greenTeam' : sup.affiliation === 'Green' }" >
+        <img ng-src="{{sup.img_url}}" ng-show="vm.image[$index]"/>
+        Name: <h2>{{sup.name}}</h2>
+        Phone Number: {{sup.phone}}<br>
+        Affiliation: {{sup.affiliation}}<br>
+        <button ng-click="vm.image[$index] = !vm.image[$index]">VIEW IMAGE</button>
+
+      </div>
+    </body>
 </html>
